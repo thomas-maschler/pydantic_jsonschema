@@ -6,7 +6,7 @@ authors = ["Thomas Maschler <thomas.maschler@gmx.net>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.8"
 pydantic = "^2.4.2"
 requests = "^2.31.0"
 aenum = "^3.1.15"
