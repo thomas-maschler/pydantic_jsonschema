@@ -26,7 +26,7 @@ addopts = "--cov=pydantic_jsonschema --no-cov-on-fail --cov-report=term-missing:
 
 [tool.black]
 line-length = 88
-target-version = ["py311"]
+target-version = ["py38"]
 
 [tool.mypy]
 namespace_packages = false
