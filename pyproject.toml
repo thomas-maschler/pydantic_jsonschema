@@ -1,0 +1,79 @@
+[tool.poetry]
+name = "pydantic-jsonschema"
+version = "0.1.0"
+description = "A library to generate Pydantic Models from jsonschema at runtime."
+authors = ["Thomas Maschler <thomas.maschler@planet.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic = "^2.4.2"
+requests = "^2.31.0"
+aenum = "^3.1.15"
+types-requests = "^2.31.0.8"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=7.4.2"
+pytest-cov = ">=4.1.0"
+black = ">=23.9.1"
+mypy = ">=1.5.1"
+ruff = ">=0.0.292"
+pre-commit = ">=3.4.0"
+
+[tool.pytest.ini_options]
+addopts = "--cov=pydantic_jsonschema --no-cov-on-fail --cov-report=term-missing:skip-covered"
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.mypy]
+namespace_packages = false
+ignore_missing_imports = true
+warn_unused_configs = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+warn_return_any = true
+exclude = "tests/*"
+
+[tool.ruff]
+
+select = ["F", "E", "W", "I001"]
+ignore = []
+fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
+unfixable = []
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+line-length = 88
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+target-version = "py311"
+
+[tool.ruff.mccabe]
+max-complexity = 10
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
