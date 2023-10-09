@@ -2,7 +2,7 @@
 name = "pydantic-jsonschema"
 version = "0.1.0"
 description = "A library to generate Pydantic Models from jsonschema at runtime."
-authors = ["Thomas Maschler <thomas.maschler@planet.com>"]
+authors = ["Thomas Maschler <thomas.maschler@gmx.net>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
