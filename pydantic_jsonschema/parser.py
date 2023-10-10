@@ -3,6 +3,7 @@ from typing import Any, Dict, List, Literal, Optional, Set, Tuple, Type, Union, 
 from urllib.parse import urlparse
 
 import requests
+from aenum import Enum, extend_enum
 from pydantic import AnyUrl, BaseModel, Field, create_model
 from pydantic.fields import FieldInfo
 from pydantic_core import PydanticUndefined
@@ -194,8 +195,10 @@ def _model_from_generic(property: Dict[str, Any]) -> Type:
         "string": {"default": str, "iri": AnyUrl, "iri-reference": AnyUrl},
         "number": {"default": float},
     }
-
     ptype = property["type"]
+    sub_type = property.get("format", "default")
+    ftype = types[ptype][sub_type]
+
     if const := property.get("const"):
         if ptype == "string":
             return Literal[f"{const}"]  # type: ignore
@@ -203,8 +206,20 @@ def _model_from_generic(property: Dict[str, Any]) -> Type:
         # elif ptype == "number":
         #     return Literal[const]
 
-    sub_type = property.get("format", "default")
-    return types[ptype][sub_type]
+    if enum := property.get(
+        "enum",
+    ):
+
+        class DynamicEnum(Enum):
+            pass
+
+        for item in enum:
+            print(item)
+            extend_enum(DynamicEnum, item, item)
+
+        return DynamicEnum
+
+    return ftype
 
 
 def _get_definitions(
